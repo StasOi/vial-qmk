@@ -103,21 +103,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   )
 };
+#endif
 
-// Функция автоматической смены цвета светодиодов при переключении слоев
+#ifdef ENCODER_MAP_ENABLE
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+  [0] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
+  [1] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
+  [2] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
+  [3] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
+};
+#endif
+
+// Функция переключения подсветки для вашей Corne v4 EX2
 void rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case 1:
-            rgb_matrix_sethsv_noeeprom(170, 255, 130); // Синий цвет для Слоя 1 (ваша fn1)
+            rgb_matrix_sethsv_noeeprom(170, 255, 130); // Синий для слоя 1 (Fn1)
             break;
         case 2:
-            rgb_matrix_sethsv_noeeprom(0, 255, 130);   // Красный цвет для Слоя 2 (ваша fn3)
+            rgb_matrix_sethsv_noeeprom(0, 255, 130);   // Красный для слоя 2 (Fn2)
             break;
         case 3:
-            rgb_matrix_sethsv_noeeprom(210, 255, 130); // Пурпурный цвет для Слоя 3 (обе зажаты)
+            rgb_matrix_sethsv_noeeprom(210, 255, 130); // Пурпурный для слоя 3 (Fn3 - обе вместе)
             break;
         default:
-            rgb_matrix_sethsv_noeeprom(85, 255, 130);  // Зеленый цвет для основного Слоя 0
+            rgb_matrix_sethsv_noeeprom(85, 255, 130);  // Зеленый (базовый цвет)
             break;
     }
 }
