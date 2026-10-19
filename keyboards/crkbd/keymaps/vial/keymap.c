@@ -114,7 +114,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif
 
-// Функция автоматической смены цвета светодиодов RGBLight при переключении слоев
+// Функция а втоматической смены цвета светодиодов RGBLight при переключении слоев
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
         case 1:
