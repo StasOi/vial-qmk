@@ -104,23 +104,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-#ifdef 
-
-// Проверяем состояние слоев и меняем цвета (матрица RGB)
+// Функция автоматической смены цвета светодиодов при переключении слоев
 void rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case 1:
-            rgb_matrix_sethsv_noeeprom(170, 255, 130); // Синий для Слоя 1 (Ваш fn1)
+            rgb_matrix_sethsv_noeeprom(170, 255, 130); // Синий цвет для Слоя 1 (ваша fn1)
             break;
         case 2:
-            rgb_matrix_sethsv_noeeprom(0, 255, 130);   // Красный для Слоя 2 (Ваш fn2)
+            rgb_matrix_sethsv_noeeprom(0, 255, 130);   // Красный цвет для Слоя 2 (ваша fn3)
             break;
         case 3:
-            rgb_matrix_sethsv_noeeprom(210, 255, 130); // Пурпурный для Слоя 3 (fn3 - обе вместе)
+            rgb_matrix_sethsv_noeeprom(210, 255, 130); // Пурпурный цвет для Слоя 3 (обе зажаты)
             break;
         default:
-            rgb_matrix_sethsv_noeeprom(85, 255, 130);  // Зеленый для базового Слоя 0
+            rgb_matrix_sethsv_noeeprom(85, 255, 130);  // Зеленый цвет для основного Слоя 0
             break;
     }
 }
-
